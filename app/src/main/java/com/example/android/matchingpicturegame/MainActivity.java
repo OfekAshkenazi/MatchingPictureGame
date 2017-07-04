@@ -12,31 +12,53 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
     View lastClick=null;
-
+    Button restart;
+    ImageView ImageScissors,ImageBell,ImageLetter,ImageStar;
+    Button buttonStar,buttonBell,buttonScissors,buttonLetter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageScissors=(ImageView) findViewById(R.id.scissors);
+        ImageBell=(ImageView) findViewById(R.id.bell);
+        ImageLetter=(ImageView) findViewById(R.id.Letter);
+        ImageStar=(ImageView) findViewById(R.id.star);
+        buttonStar=(Button) findViewById(R.id.StarButton);
+        buttonBell=(Button) findViewById(R.id.bellButton);
+        buttonScissors=(Button) findViewById(R.id.ScissorsButton);
+        buttonLetter=(Button) findViewById(R.id.LetterButton);
+        restart=(Button) findViewById(R.id.restartB);
         setOnClickListeners();
+        restart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageScissors.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+                ImageBell.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+                ImageLetter.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+                ImageStar.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+                buttonStar.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+                buttonBell.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+                buttonScissors.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+                buttonLetter.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+            }
+        });
     }
     public void setOnClickListeners(){
-        ImageView ImageScissors=(ImageView) findViewById(R.id.scissors);
-        ImageView ImageBell=(ImageView) findViewById(R.id.bell);
-        ImageView ImageLetter=(ImageView) findViewById(R.id.Letter);
-        ImageView ImageStar=(ImageView) findViewById(R.id.star);
-        Button buttonStar=(Button) findViewById(R.id.StarButton);
-        Button buttonBell=(Button) findViewById(R.id.bellButton);
-        Button buttonScissors=(Button) findViewById(R.id.ScissorsButton);
-        Button buttonLetter=(Button) findViewById(R.id.LetterButton);
+        ImageScissors.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+        ImageBell.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+        ImageLetter.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+        ImageStar.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+        buttonStar.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+        buttonBell.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+        buttonScissors.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+        buttonLetter.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
         View.OnClickListener listener=new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (view.getBackground() instanceof ColorDrawable) {
-                    ColorDrawable color = (ColorDrawable) view.getBackground();
-                    if (color.getColor() == Color.BLUE)
-                        return;
+                ColorDrawable color = (ColorDrawable) view.getBackground();
+                if (color.getColor() == Color.BLUE) {
+                    return;
                 }
-
                 if (view.equals(lastClick)||(lastClick!=null&&recognizeView(view)!=recognizeView(lastClick))){
                     lastClick.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
                     view.setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
@@ -54,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                     lastClick=null;
                     return;
                 }
-
             }
         };
         buttonStar.setOnClickListener(listener);
